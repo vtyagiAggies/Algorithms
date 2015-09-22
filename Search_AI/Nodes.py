@@ -23,7 +23,7 @@ class Node:
     def __init__(self, index, parent = None):
 	self.index = index
 	self.parent = parent
-	self.depth = 0
+	self.depth = -1
 	self.heur = 0.0
 	self.successor = []
 	self.tracebacks = []
@@ -32,5 +32,8 @@ class Node:
 	return self.successor
     def traceback(self):
 	return self.tracebacks
+
+class GlobalVariable:
+	debug = 0
 
  
