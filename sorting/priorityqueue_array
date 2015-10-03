@@ -1,0 +1,64 @@
+#!/usr/bin/python
+import sys
+
+class Priorityqueue:
+    def __init__(self, array):
+        self.heap  = [-1]
+        self.heapify(array)                 #heap as a one-dimensional array will represent binary tree, heap[0] stores nothing; to access children for k node 2*k and 2*k + 1; to access parent of k node 2*k
+
+    def heapify(self, array):
+        for x in array:
+            self.insert((x))
+           
+
+    def insert(self, x):
+        self.heap.append(x)
+        k = len(self.heap)-1
+        while(k > 1 and int(self.heap[k/2]) < int(self.heap[k])):         #swim effect in heap moving greater element upwards
+            self.heap[k/2], self.heap[k] = self.heap[k], self.heap[k/2]
+            k = k/2
+        
+
+    def getmax(self):
+        return self.heap[1] #maximum element will be at root
+
+    def popmax(self):
+        if len(self.heap) < 2:
+            return -1
+        result = self.heap[1]
+        h = self.heap
+        l = len(self.heap)
+        self.heap[1] = self.heap[l-1]
+        del self.heap[l-1:]
+        l -= 1
+        k = 1
+        while (2*k < l):                #sink effec taking minimum element down the tree
+            if (2*k + 1) < l and (int(h[k]) < int(h[2*k]) or int(h[k]) < int(h[2*k+1])) :
+                if int(h[2*k]) > int(h[2*k+1]):
+                    self.heap[k], self.heap[2*k] = self.heap[2*k], self.heap[k]
+                    k = 2*k
+                else:
+                     self.heap[k], self.heap[2*k+1] = self.heap[2*k+1], self.heap[k]
+                     k = 2*k+1
+            elif ((2*k) < l and int(self.heap[k]) < int(self.heap[2*k])):
+                self.heap[k], self.heap[2*k] = self.heap[2*k], self.heap[k]
+                k = 2*k
+            else:
+                break
+        return result
+
+if __name__ == "__main__":
+    k = 1
+    ar  = []
+
+    for i in range(len(sys.argv) - 1):
+        ar.append(sys.argv[k])
+        k += 1
+        
+
+
+    p = Priorityqueue(ar)
+    l = len(p.heap)
+
+    for i in range(l-1):
+         print p.popmax(),
