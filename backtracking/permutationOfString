@@ -1,0 +1,31 @@
+#!/usr/bin/python
+import sys
+class Global:
+    result = []
+
+def permute(index,end, string):
+    if index >= end:
+        Global.result.append(string)
+        return
+    
+    i = index
+    while(i <=end):
+        if(string[i] != string[index] or i == index):
+            string= swap(index, i, string)
+            permute(index+1, end, string)
+            swap(index, i, string)
+        i += 1
+    returne
+
+def swap(i, j, string):
+    if i != j:
+        string = string[:i] + string[j] + string[i+1:j] + string[i] + string[j+1:]
+    return  string
+
+
+
+if __name__=="__main__":
+    string = sys.argv[1]
+    permute(0,len(string) -1, string)
+
+    print Global.result
