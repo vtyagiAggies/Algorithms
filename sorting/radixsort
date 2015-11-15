@@ -1,0 +1,55 @@
+#!/usr/bin/python
+from random import randrange
+import sys
+
+def sort(arr):
+    buckets = {}
+    for i in range(10):
+        buckets[i] = []
+
+    for x in arr:
+        bit = x%10
+        buckets[bit].append(x)
+
+    flag = True
+    k = 1
+    it = 0
+    while(flag):
+
+       flag = False
+       for i in range(10):
+           l = len(buckets[i])
+           for j in range(l):
+               it += 1
+               x = buckets[i][0]
+               bit = (x % pow(10,k))/pow(10,k-1)
+               if bit == 0 and i == 0:
+                   continue
+               buckets[i].remove(x)
+               buckets[bit].append(x)
+               flag = flag or bit
+       k += 1
+       #y = raw_input()
+
+    print "___Output___:"
+    for i in range(10):
+        for x in buckets[i]:
+           print x,
+
+    print
+    print "Length of Array: {0} and number of iteration: {1}".format(len(arr), it)
+
+
+if __name__=="__main__":
+
+    try:
+        size = int(sys.argv[1])
+    except:
+        size = 100
+    input = []
+    for i in range(size):
+        input.append(randrange(1,size,1))
+
+    print "Input array: [{0}]".format(input)
+    sort(input)
+

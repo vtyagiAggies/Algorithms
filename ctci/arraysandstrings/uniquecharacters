@@ -1,0 +1,28 @@
+#!/usr/bin/python
+import sys
+
+def isuni_withspace(str):
+  dict = {}
+  #return false if lenght is greater than unique numbers
+  for i in range(0,255):
+    dict[i] = False
+  for x in str:
+    index = ord(x)
+    if dict[index] == True:
+      return False
+    else:
+      dict[index] = True
+  return True
+
+def isuni(str):
+    checker  = 0
+    for x in str:
+        index = ord(x)
+        if(checker & 1<<index):
+            return False
+        else:
+            checker = checker|1<<index
+    return True
+
+if __name__ == "__main__":
+  print isuni(sys.argv[1])

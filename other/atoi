@@ -1,0 +1,26 @@
+#!/usr/bin/python
+import sys
+def atoi(num, base = 2):
+    result = []
+    while(num > 0):
+        rem = num%base
+        if rem <10:
+            result.append(num%base)
+        else:
+            result.append(chr(65+(rem-10)))
+        num = num/base
+        
+    result.reverse()
+    answer = ''.join( str(x) for x in result)
+    print answer
+
+if __name__ == "__main__":
+    try:
+        num = int(sys.argv[1])
+        base = int(sys.argv[2])
+    except:
+        num = 20
+        base = 2
+        
+    atoi(num, base)
+

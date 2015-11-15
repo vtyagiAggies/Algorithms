@@ -15,7 +15,7 @@ def permute(index,end, string):
             permute(index+1, end, string)
             swap(index, i, string)
         i += 1
-    returne
+    return
 
 def swap(i, j, string):
     if i != j:

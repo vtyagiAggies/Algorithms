@@ -1,0 +1,11 @@
+#!/usr/bin/python
+arr = [0,2,3,4,5,1,7,8]
+
+n = 8
+i = n
+while(i):
+    i = i-1
+    n ^= i^arr[i]
+print n
+
+

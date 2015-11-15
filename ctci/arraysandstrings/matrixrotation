@@ -1,0 +1,32 @@
+#!/usr/bin/python
+
+def printm(matrix):
+    for x in matrix:
+        for y in x:
+            print y,
+        print
+
+def rotate(matrix):
+    l = len(matrix)
+    for i in range(0,len(matrix)/2):
+        print "Hello"
+        s = i
+        end = l - 1 -i
+        
+        for j in range(s, end):
+            temp = matrix[i][j]
+            matrix[i][j] = matrix[end -j][i]
+            matrix[end-j][i] = matrix[end -i][end - j]
+            matrix[end-i][end -j] = matrix[j][end -i] 
+            matrix[j][end- i] = temp
+            #printm(matrix)
+
+    printm(matrix)
+
+if __name__ == "__main__":
+    matrix =[[1,2],[3,4]]
+    matrix = [[1,2,3,11],[4,5,6,12],[7,8,9,13],[14,15,16,17]]
+    printm(matrix)
+    print "answer:"
+
+rotate(matrix)
